@@ -32,9 +32,208 @@
             min-height:100vh;overflow-x:hidden;line-height:1.6;
             -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
         }
+        .bg-ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+        .bg-orb{position:absolute;border-radius:50%;filter:blur(120px);opacity:0.08}
+        .bg-orb-1{width:700px;height:700px;background:radial-gradient(circle,#d4af37,transparent);top:-200px;right:-150px;animation:orbFloat1 18s ease-in-out infinite}
+        .bg-orb-2{width:500px;height:500px;background:radial-gradient(circle,#c9a84c,transparent);bottom:-150px;left:-100px;animation:orbFloat2 22s ease-in-out infinite}
+        .bg-orb-3{width:400px;height:400px;background:radial-gradient(circle,rgba(212,175,55,0.5),transparent);top:50%;left:50%;transform:translate(-50%,-50%);animation:orbFloat3 20s ease-in-out infinite}
+        @keyframes orbFloat1{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(-60px,40px) scale(1.1)}66%{transform:translate(40px,-30px) scale(0.9)}}
+        @keyframes orbFloat2{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(50px,-30px) scale(1.15)}66%{transform:translate(-40px,20px) scale(0.85)}}
+        @keyframes orbFloat3{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.2)}}
+        .grid-overlay{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px}
+        .container{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:40px 24px 60px}
+        .header{text-align:center;padding:24px 0 16px;border-bottom:1px solid var(--border-subtle);margin-bottom:48px}
+        .header-badge{display:inline-flex;align-items:center;gap:8px;background:var(--bg-card);border:1px solid var(--border-gold);border-radius:50px;padding:6px 18px;margin-bottom:16px;font-size:13px;font-weight:500;color:var(--gold);letter-spacing:0.5px}
+        .header-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--accent-green);animation:pulseDot 2s ease-in-out infinite}
+        @keyframes pulseDot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+        .header-tagline{font-size:13px;text-transform:uppercase;letter-spacing:3px;color:var(--text-muted);font-weight:500;margin-top:8px}
+        .hero{text-align:center;margin-bottom:48px}
+        .hero-eyebrow{display:inline-block;font-size:13px;text-transform:uppercase;letter-spacing:4px;color:var(--gold);font-weight:600;margin-bottom:16px}
+        .hero-title{font-family:var(--font-heading);font-size:clamp(40px,6vw,64px);font-weight:800;line-height:1.1;letter-spacing:-1px;margin-bottom:8px;background:linear-gradient(180deg,#fff 0%,#d0d0d8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        .hero-author{font-size:16px;color:var(--text-secondary);font-weight:400;margin-bottom:32px}
+        .hero-author span{color:var(--gold);font-weight:600}
+        .book-card{display:flex;align-items:center;gap:32px;background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px 36px;box-shadow:var(--shadow-card),var(--shadow-gold);margin-bottom:32px;transition:var(--transition-smooth)}
+        .book-card:hover{border-color:var(--border-gold);box-shadow:var(--shadow-card),0 0 60px rgba(212,175,55,0.1)}
+        .book-cover{width:100px;height:140px;flex-shrink:0;background:linear-gradient(145deg,#1a1a35 0%,#0d0d1a 50%,#1a1a35 100%);border-radius:6px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border-medium);box-shadow:0 12px 32px rgba(0,0,0,0.5);position:relative;overflow:hidden}
+        .book-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(212,175,55,0.08) 100%)}
+        .book-cover-icon{width:48px;height:48px;opacity:0.5}
+        .book-cover-icon svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.5}
+        .book-info{flex:1;min-width:0}
+        .book-format{font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);margin-bottom:4px}
+        .book-title-card{font-family:var(--font-heading);font-size:22px;font-weight:700;margin-bottom:4px;color:var(--text-primary)}
+        .book-author-card{font-size:13px;color:var(--text-secondary);margin-bottom:12px}
+        .book-rating{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+        .book-stars{color:var(--gold);font-size:15px;letter-spacing:2px}
+        .book-rating-text{font-size:12px;color:var(--text-muted)}
+        .book-bestseller{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--gold);font-weight:600;background:rgba(212,175,55,0.08);padding:4px 12px;border-radius:50px}
+        .pricing{display:flex;align-items:center;justify-content:center;gap:20px;margin-bottom:40px}
+        .price-old{font-size:28px;font-weight:700;color:var(--text-muted);text-decoration:line-through;text-decoration-color:var(--accent-red);text-decoration-thickness:2px}
+        .price-arrow{font-size:20px;color:var(--text-muted)}
+        .price-free-badge{position:relative}
+        .price-free{font-family:var(--font-heading);font-size:48px;font-weight:900;color:var(--gold);animation:pricePulse 2.2s ease-in-out infinite;text-shadow:0 0 30px var(--gold-glow)}
+        @keyframes pricePulse{0%,100%{transform:scale(1);text-shadow:0 0 30px var(--gold-glow)}50%{transform:scale(1.08);text-shadow:0 0 50px var(--gold-glow),0 0 80px rgba(212,175,55,0.2)}}
+        .price-free-sparkle{position:absolute;width:6px;height:6px;background:var(--gold-light);border-radius:50%;animation:sparkle 1.5s ease-in-out infinite}
+        .price-free-sparkle:nth-child(2){top:-8px;right:-12px;animation-delay:0s}
+        .price-free-sparkle:nth-child(3){top:10px;right:-18px;animation-delay:0.4s}
+        .price-free-sparkle:nth-child(4){bottom:-4px;left:-10px;animation-delay:0.8s}
+        @keyframes sparkle{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}
+        .steps-section{margin-bottom:48px}
+        .steps-heading{text-align:center;font-family:var(--font-heading);font-size:26px;font-weight:700;margin-bottom:32px;color:var(--text-primary)}
+        .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+        .step{background:var(--bg-card);border:1px solid var(--border-subtle);border-radius:var(--radius-lg);padding:28px 20px;text-align:center;transition:var(--transition-smooth);position:relative;overflow:hidden}
+        .step::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.4s}
+        .step:hover{border-color:var(--border-gold);transform:translateY(-4px);box-shadow:var(--shadow-gold)}
+        .step:hover::before{opacity:1}
+        .step-number{display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(212,175,55,0.1);border:2px solid var(--border-gold);margin:0 auto 16px;font-weight:700;font-size:18px;color:var(--gold)}
+        .step-number.one{animation:stepReveal 0.6s ease-out 0.2s both}
+        .step-number.two{animation:stepReveal 0.6s ease-out 0.4s both}
+        .step-number.three{animation:stepReveal 0.6s ease-out 0.6s both}
+        @keyframes stepReveal{from{opacity:0;transform:scale(0.6)}to{opacity:1;transform:scale(1)}}
+        .step-title{font-weight:700;font-size:16px;margin-bottom:6px;color:var(--text-primary)}
+        .step-desc{font-size:13px;color:var(--text-secondary);line-height:1.5}
+        .scarcity{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:24px}
+        .scarcity-icon{width:28px;height:28px;flex-shrink:0}
+        .scarcity-text{font-size:15px;font-weight:600;color:var(--text-secondary)}
+        .scarcity-count{display:inline-block;font-weight:800;font-size:22px;background:linear-gradient(135deg,#e74c3c,#ff6b6b);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:scarcityGlow 1.8s ease-in-out infinite;margin:0 4px}
+        @keyframes scarcityGlow{0%,100%{filter:brightness(1)}50%{filter:brightness(1.4)}}
+        .scarcity-bar-wrap{width:100%;max-width:320px;margin:0 auto 36px;height:4px;background:var(--bg-card);border-radius:2px;overflow:hidden;border:1px solid var(--border-subtle)}
+        .scarcity-bar-fill{height:100%;width:17%;background:linear-gradient(90deg,#e74c3c,#ff6b6b,#e74c3c);background-size:200% 100%;animation:scarcityBar 2s ease-in-out infinite;border-radius:2px}
+        @keyframes scarcityBar{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+        .cta-wrap{text-align:center;margin-bottom:36px}
+        .cta-button{display:inline-flex;align-items:center;gap:12px;padding:18px 48px;font-size:18px;font-weight:700;font-family:var(--font-body);color:#0a0a0f;background:var(--cta-gradient);border:none;border-radius:var(--radius-xl);cursor:pointer;text-decoration:none;box-shadow:var(--shadow-cta);transition:var(--transition-bounce);position:relative;overflow:hidden;letter-spacing:0.3px}
+        .cta-button:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 14px 44px rgba(212,175,55,0.45);background:var(--cta-gradient-hover)}
+        .cta-button:active{transform:translateY(-1px) scale(0.98)}
+        .cta-button::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,0.25) 0%,transparent 50%);pointer-events:none}
+        .cta-shine{position:absolute;top:0;left:-100%;width:60%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);animation:shine 2.5s ease-in-out infinite}
+        @keyframes shine{0%{left:-100%}50%,100%{left:200%}}
+        .cta-subtext{font-size:12px;color:var(--text-muted);margin-top:12px;font-weight:400}
+        .trust-bar{display:flex;align-items:center;justify-content:center;gap:32px;padding:20px 0;border-top:1px solid var(--border-subtle);border-bottom:1px solid var(--border-subtle);margin-bottom:40px;flex-wrap:wrap}
+        .trust-item{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-muted)}
+        .trust-icon{width:18px;height:18px;color:var(--gold);opacity:0.7}
+        .trust-icon svg{width:100%;height:100%}
+        .testimonial{text-align:center;padding:32px 24px;background:var(--bg-card);border-radius:var(--radius-lg);border:1px solid var(--border-subtle);margin-bottom:40px}
+        .testimonial-quote{font-family:var(--font-heading);font-size:18px;font-style:italic;color:var(--text-secondary);line-height:1.6;margin-bottom:16px}
+        .testimonial-name{font-weight:600;font-size:14px;color:var(--text-primary)}
+        .testimonial-role{font-size:12px;color:var(--text-muted);margin-top:2px}
+        .footer{text-align:center;font-size:12px;color:var(--text-muted);padding-top:24px;border-top:1px solid var(--border-subtle)}
+        .footer a{color:var(--text-muted);text-decoration:underline}
+        .footer a:hover{color:var(--gold)}
+        .notifications-container{position:fixed;top:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none;max-width:340px;width:100%}
+        .notification{background:var(--bg-card);border:1px solid var(--border-gold);border-radius:var(--radius-md);padding:14px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 8px 32px rgba(0,0,0,0.5),0 0 20px rgba(212,175,55,0.05);animation:notifSlideIn 0.5s cubic-bezier(0.34,1.56,0.64,1) both,notifFadeOut 0.4s ease-in 5.5s forwards;transform-origin:top right}
+        @keyframes notifSlideIn{from{opacity:0;transform:translateX(120%) scale(0.85)}to{opacity:1;transform:translateX(0) scale(1)}}
+        @keyframes notifFadeOut{from{opacity:1;transform:translateX(0) scale(1)}to{opacity:0;transform:translateX(60px) scale(0.9)}}
+        .notif-avatar{width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;color:#fff}
+        .notif-content{flex:1;min-width:0}
+        .notif-name{font-weight:600;font-size:13px;color:var(--text-primary)}
+        .notif-action{font-size:11px;color:var(--text-muted);margin-top:2px}
+        .notif-time{font-size:10px;color:var(--text-muted);white-space:nowrap}
+        @media(max-width:640px){
+            .container{padding:24px 16px 48px}
+            .hero-title{font-size:36px}
+            .book-card{flex-direction:column;text-align:center;padding:24px 20px;gap:20px}
+            .book-cover{width:80px;height:112px}
+            .pricing{gap:14px}
+            .price-old{font-size:22px}
+            .price-free{font-size:38px}
+            .steps{grid-template-columns:1fr;gap:12px}
+            .step{padding:24px 20px}
+            .trust-bar{gap:16px}
+            .notifications-container{right:8px;top:10px;max-width:calc(100vw - 16px)}
+            .notification{padding:12px 14px}
+            .cta-button{padding:16px 36px;font-size:16px}
+        }
+        @media(max-width:380px){
+            .hero-title{font-size:28px}
+            .steps-heading{font-size:22px}
+            .book-title-card{font-size:18px}
+        }
     </style>
 </head>
 <body>
-    LOADING_PLACEHOLDER
+    <div class="bg-ambient"><div class="bg-orb bg-orb-1"></div><div class="bg-orb bg-orb-2"></div><div class="bg-orb bg-orb-3"></div></div>
+    <div class="grid-overlay"></div>
+    <div class="notifications-container" id="notifications"></div>
+    <div class="container">
+        <header class="header">
+            <div class="header-badge"><span class="header-badge-dot"></span>Limited Time Offer</div>
+            <p class="header-tagline">Premium Digital Download</p>
+        </header>
+        <section class="hero">
+            <p class="hero-eyebrow">#1 New York Times Bestseller</p>
+            <h1 class="hero-title">Atomic Habits</h1>
+            <p class="hero-author">by <span>James Clear</span></p>
+        </section>
+        <div class="book-card">
+            <div class="book-cover"><img src="https://app.zaro.ai/api/files/download?fid=dfb11eb1-cd4e-457f-8fa1-679ebf36c968&exp=1786032007&sig=LkvashamiokwC5CTwI65Rw" alt="Atomic Habits Book Cover" style="width:100%;height:100%;object-fit:cover;border-radius:6px;"></div>
+            <div class="book-info">
+                <p class="book-format">PDF eBook</p>
+                <h3 class="book-title-card">Atomic Habits</h3>
+                <p class="book-author-card">James Clear</p>
+                <div class="book-rating"><span class="book-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span><span class="book-rating-text">4.8 &middot; 120,000+ ratings</span></div>
+                <span class="book-bestseller"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Over 15 Million Copies Sold</span>
+            </div>
+        </div>
+        <div class="pricing">
+            <span class="price-old">$28.00</span><span class="price-arrow">&rarr;</span>
+            <div class="price-free-badge"><span class="price-free">FREE</span><span class="price-free-sparkle"></span><span class="price-free-sparkle"></span><span class="price-free-sparkle"></span></div>
+        </div>
+        <section class="steps-section">
+            <h2 class="steps-heading">How to Claim Your Free Copy</h2>
+            <div class="steps">
+                <div class="step"><div class="step-number one">1</div><h4 class="step-title">Choose an Offer</h4><p class="step-desc">Select one of the available offers from our partners. Each takes under two minutes to complete.</p></div>
+                <div class="step"><div class="step-number two">2</div><h4 class="step-title">Complete the Offer</h4><p class="step-desc">Follow the simple instructions to finish your chosen offer. No payment required.</p></div>
+                <div class="step"><div class="step-number three">3</div><h4 class="step-title">Claim Your PDF</h4><p class="step-desc">Once your offer is verified, your free PDF download unlocks instantly.</p></div>
+            </div>
+        </section>
+        <div class="scarcity">
+            <svg class="scarcity-icon" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12" stroke="#e74c3c" stroke-width="2"/><path d="M14 8v7M14 19h.01" stroke="#e74c3c" stroke-width="2.5" stroke-linecap="round"/></svg>
+            <span class="scarcity-text">Only <span class="scarcity-count" id="copiesCount">17</span> copies left</span>
+        </div>
+        <div class="scarcity-bar-wrap"><div class="scarcity-bar-fill"></div></div>
+        <div class="cta-wrap">
+            <a href="https://appsave.online/cl/i/n6e224" class="cta-button" id="ctaButton" target="_blank" rel="noopener"><span class="cta-shine"></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download Now</a>
+            <p class="cta-subtext">Instant access after offer completion</p>
+        </div>
+        <div class="trust-bar">
+            <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>Secure Download</div>
+            <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></span>Verified File</div>
+            <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span>Instant Access</div>
+        </div>
+        <div class="testimonial">
+            <p class="testimonial-quote">"Atomic Habits completely reshaped how I think about progress and success. The most practical and transformative book I have ever read."</p>
+            <p class="testimonial-name">Mark R.</p><p class="testimonial-role">Verified Reader</p>
+        </div>
+        <footer class="footer">
+            <p>This is a promotional landing page. Atomic Habits is a trademark of James Clear.</p>
+            <p style="margin-top:6px;"><a href="#">Privacy Policy</a> &middot; <a href="#">Terms of Service</a> &middot; <a href="#">Contact</a></p>
+        </footer>
+    </div>
+    <script>
+(function(){
+var users=[{name:'Alex M.',init:'AM',color:'#3b82f6'},{name:'Jordan K.',init:'JK',color:'#8b5cf6'},{name:'Taylor R.',init:'TR',color:'#06b6d4'},{name:'Morgan S.',init:'MS',color:'#10b981'},{name:'Casey P.',init:'CP',color:'#f59e0b'},{name:'Riley D.',init:'RD',color:'#ef4444'},{name:'Dakota W.',init:'DW',color:'#ec4899'},{name:'Quinn B.',init:'QB',color:'#14b8a6'},{name:'Avery J.',init:'AJ',color:'#6366f1'},{name:'Reese T.',init:'RT',color:'#f97316'},{name:'Skyler H.',init:'SH',color:'#84cc16'},{name:'Cameron L.',init:'CL',color:'#a855f7'},{name:'Blake N.',init:'BN',color:'#0ea5e9'},{name:'Drew F.',init:'DF',color:'#e11d48'},{name:'Sage V.',init:'SV',color:'#22c55e'},{name:'Parker G.',init:'PG',color:'#d946ef'},{name:'Finley C.',init:'FC',color:'#0891b2'},{name:'Rowan Z.',init:'RZ',color:'#ea580c'},{name:'Kendall M.',init:'KM',color:'#4f46e5'},{name:'Emery K.',init:'EK',color:'#65a30d'}];
+var container=document.getElementById('notifications');
+var copiesCount=document.getElementById('copiesCount');
+var usedIndices=[];
+var copies=17;
+function getRandomUser(){
+if(usedIndices.length>=users.length)usedIndices=[];
+var idx;do{idx=Math.floor(Math.random()*users.length)}while(usedIndices.includes(idx));
+usedIndices.push(idx);return users[idx];
+}
+function timeAgo(){var s=Math.floor(Math.random()*45+3);return s+' seconds ago';}
+function showNotification(){
+var u=getRandomUser();
+var el=document.createElement('div');el.className='notification';
+el.innerHTML='<div class="notif-avatar" style="background:'+u.color+'">'+u.init+'</div><div class="notif-content"><div class="notif-name">'+u.name+' has claimed this book</div><div class="notif-action">Atomic Habits &mdash; Free PDF</div></div><div class="notif-time">Just now</div>';
+container.appendChild(el);
+var timeEl=el.querySelector('.notif-time');
+var started=Date.now();
+var iv=setInterval(function(){var sec=Math.floor((Date.now()-started)/1000);timeEl.textContent=sec+'s ago';},3000);
+setTimeout(function(){clearInterval(iv);if(el.parentNode)el.remove();if(copies>0){copies--;copiesCount.textContent=copies;var bar=document.querySelector('.scarcity-bar-fill');if(bar)bar.style.width=Math.max(4,copies)+'%';}},6000);
+}
+showNotification();showNotification();
+setInterval(showNotification,7000);
+})();
+    </script>
 </body>
 </html>
